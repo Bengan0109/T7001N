@@ -1,2 +1,2 @@
 # TODO
-Fix environmental variables.
+Fix environmental variables, so i can use it from Mac as well (Create requirements file).

@@ -1,0 +1,62 @@
+data;
+
+# Possible facilities
+set I := Athens, Thessalonica, Larissa, Patra, Heracleion;
+
+# Known demand regions
+set J := Alexandroupolis Xanthe Comotine Cavala Drama Serres Kilkis Caterine
+         Kozane Castoria Florina Volos Ioannina Lamia Chalkis Agrinion Corinth
+         Argos Tripolis Sparta Chania Rethymnon;
+
+# Type of vehicles considered
+set K := Minitruck, Mediumtruck, Bigtruck, Longvehicle;
+
+# Vehicle prices (in Euros) , vehicle capacities (in Tons)
+param:
+                      f                u   :=
+Minitruck           9000               0.7
+Mediumtruck        14000               2
+Bigtruck           20000              10
+Longvehicle        80000              50;
+
+# Facility prices (in Euros), production capacity (in Tons), 
+# max number of trucks, max number of customers
+param :
+                  F         U      M    C  :=
+Athens          250000     150    15    7
+Thessalonica    200000     150    20    9
+Larissa         150000     200    25   10
+Patra           210000      95    10    5
+Heracleion      350000     100    10    7;
+
+# Customer demands (in Tons)
+param D := Alexandroupolis 20, Xanthe 10, Comotine 10, Cavala 40, Drama 8,
+           Serres 25, Kilkis 7, Caterine 15, Kozane 7, Castoria 7, Florina 7,
+           Volos 40, Ioannina 10, Lamia 25, Chalkis 50, Agrinion 20, Corinth 40,
+           Argos 15, Tripolis 20, Sparta 10, Chania 20, Rethymnon 10;
+
+# Cost of servicing customers (in Euros) -- matrix is trANSPOSED for better view
+param c default 99999 (tr) : 
+                  Athens Thessalonica Larissa Patra Heracleion :=
+Alexandroupolis    8000      4000       4000   .     9000   
+Xanthe             8000      3000       3000   .     .
+Comotine           8000      3000       3000   .     8000
+Cavala             5000      1000       1500   8000  8000
+Drama              6000      1000       1500   8000  8000
+Serres             6000      1000       1500   8000  8000
+Kilkis             6000       500       1000   8000  8000
+Caterine           3000       300        300   3000  5000
+Kozane             8000      1000       1000   .     .
+Castoria              .      1000       1300   .     .
+Florina               .      1500       2000   .     .
+Volos              2000      2000        300   3000  3000
+Ioannina           8000      9000       3000   8000  9540
+Lamia              1000      8000       1000   3000  3000
+Chalkis             300      8000       1500   5000  2500
+Agrinion            500         .       1500    500  .
+Corinth             300         .       3000    300  1000
+Argos               300         .       3000    300  2000
+Tripolis            500         .       4000    300  .
+Sparta             1500         .          .    300  .
+Chania             3000         .          .   2000   300
+Rethymnon          4000         .          .   3000   200;
